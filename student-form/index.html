@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+</head>
+
+<body class="bg-light">
+
+<div id="student-form" class="container mt-5"></div>
+
+<script type="module">
+import "https://cdn.jsdelivr.net/gh/keshavsoft/json-to-tag@main/docs/dist/v4/min.js";
+
+const formSpec = {
+  tagName: "form",
+  classList: "bg-white p-4 rounded-4 shadow mx-auto",
+  attributes: {
+    style: "max-width: 450px"
+  },
+
+  children: [
+    {
+      tagName: "h2",
+      textContent: "Student Registration",
+      classList: "text-center fw-bold mb-4"
+    },
+
+    {
+      tagName: "label",
+      textContent: "Student Name",
+      classList: "form-label fw-semibold"
+    },
+
+    {
+      tagName: "input",
+      classList: "form-control mb-3",
+      attributes: {
+        type: "text",
+        name: "student",
+        placeholder: "Enter your name",
+        required: true
+      }
+    },
+
+    {
+      tagName: "label",
+      textContent: "Mobile Number",
+      classList: "form-label fw-semibold"
+    },
+
+    {
+      tagName: "input",
+      classList: "form-control mb-4",
+      attributes: {
+        type: "tel",
+        name: "phone",
+        placeholder: "Enter mobile number",
+        required: true
+      }
+    },
+
+    {
+      tagName: "button",
+      textContent: "Register",
+      classList: "btn btn-primary w-100 py-2",
+      attributes: {
+        type: "submit"
+      }
+    }
+  ]
+};
+
+const form = window.ks.jsonToTag.buildSpecElement(formSpec);
+
+form.onsubmit = (event) => {
+  event.preventDefault();
+
+  console.log("Name:", form.elements.student.value);
+  console.log("Mobile:", form.elements.phone.value);
+};
+
+document.querySelector("#student-form").append(form);
+</script>
+
+</body>
+</html>
